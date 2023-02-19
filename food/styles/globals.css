@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,400;0,900;1,800&display=swap';
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.btn-primary {
+   @apply text-white px-[30px] py-[8px] rounded-3xl
+   bg-primary cursor-pointer hover:opacity-70 transition-all
+}
