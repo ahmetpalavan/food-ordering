@@ -1,10 +1,9 @@
-/** @format */
-
 import OutsideClickHandler from "react-outside-click-handler";
 import Title from "./Title";
 import Image from "next/image";
 import { GiCancel } from "react-icons/gi";
-
+import Card from '@mui/material/Card';
+import { Button, Input } from "@mui/material";
 const Search = ({ setIsSearchModal }) => {
   return (
     <div
@@ -13,9 +12,9 @@ const Search = ({ setIsSearchModal }) => {
     >
       <OutsideClickHandler onOutsideClick={() => setIsSearchModal(false)}>
         <div className="w-full h-full grid place-content-center relative mt-10">
-          <div className="relative p-10 z-50 w-[370px] md:w-[600px] rounded-3xl bg-white border-2">
+          <Card className="relative p-10 z-50 w-[370px] md:w-[600px] rounded-full bg-white">
             <Title addClass="text-[40px] text-center">Search</Title>
-            <input type="text" placeholder="Search..." className="border w-full my-10" />
+            <Input type="text" placeholder="Search..." className="border w-full my-10" />
             <ul>
               <li className="flex items-center justify-between p-2 hover:bg-primary transition-all">
                 <div className="relative flex">
@@ -42,8 +41,8 @@ const Search = ({ setIsSearchModal }) => {
             <button onClick={() => setIsSearchModal(false)} className="absolute top-4 right-4">
               <GiCancel size={25} className="transition-all " />
             </button>
-          </div>
-        </div>
+        </Card>
+      </div>
       </OutsideClickHandler>
     </div>
   );
