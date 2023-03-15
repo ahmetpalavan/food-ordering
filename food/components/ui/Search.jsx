@@ -2,7 +2,7 @@ import OutsideClickHandler from "react-outside-click-handler";
 import Title from "./Title";
 import Image from "next/image";
 import { GiCancel } from "react-icons/gi";
-import Card from '@mui/material/Card';
+import Card from "@mui/material/Card";
 import { Button, Input } from "@mui/material";
 const Search = ({ setIsSearchModal }) => {
   return (
@@ -41,8 +41,8 @@ const Search = ({ setIsSearchModal }) => {
             <button onClick={() => setIsSearchModal(false)} className="absolute top-4 right-4">
               <GiCancel size={25} className="transition-all " />
             </button>
-        </Card>
-      </div>
+          </Card>
+        </div>
       </OutsideClickHandler>
     </div>
   );
