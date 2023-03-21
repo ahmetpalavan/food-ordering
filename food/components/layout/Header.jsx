@@ -4,6 +4,7 @@ import { GiHamburgerMenu, GiCancel } from "react-icons/gi";
 import Logo from "../ui/Logo";
 import Search from "../ui/Search";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Header = () => {
   const router = useRouter();
@@ -21,16 +22,16 @@ const Header = () => {
         >
           <ul className="flex gap-x-2 sm:flex-row flex-col items-center">
             <li className="px-[5px] py-[10px] uppercase hover:text-primary cursor-pointer">
-              <a href="">Home</a>
+              <Link href="/">Home</Link>
             </li>
             <li className="px-[5px] py-[10px] uppercase hover:text-primary cursor-pointer">
-              <a href="">Menu</a>
+              <Link href="/menu">Menu</Link>
             </li>
             <li className="px-[5px] py-[10px] uppercase hover:text-primary cursor-pointer">
-              <a href="">About</a>
+              <Link href="/about">About</Link>
             </li>
             <li className="px-[5px] py-[10px] uppercase hover:text-primary cursor-pointer">
-              <a href="">Book Table</a>
+              <Link href="/reservation">Book Table</Link>
             </li>
           </ul>
           {isMenuModal && (
@@ -40,9 +41,9 @@ const Header = () => {
           )}
         </nav>
         <div className="flex gap-x-4 items-center">
-          <a href="#">
+          <Link href="/auth/login">
             <FaUserAlt className="hover:text-primary transition-all" />
-          </a>
+          </Link>
           <a href="#">
             <FaShoppingCart className="hover:text-primary transition-all" />
           </a>

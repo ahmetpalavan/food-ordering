@@ -1,5 +1,3 @@
-/** @format */
-
 import { Button, Grid } from "@mui/material";
 import { useFormik } from "formik";
 import React from "react";
@@ -11,7 +9,7 @@ const Reservation = (props) => {
   const onSubmit = async (values, actions) => {
     await new Promise((r) => setTimeout(r, 3000));
     actions.resetForm();
-    console.log(values, actions, "ahmetsdasd");
+    // console.log(values, actions, "ahmetsdasd");
   };
 
   const { handleChange, handleSubmit, values, errors, touched, handleBlur } = useFormik({
@@ -26,7 +24,7 @@ const Reservation = (props) => {
     validationSchema: reservationSchema,
   });
 
-  console.log(values);
+//   console.log(values);
 
   const inputs = [
     {
@@ -74,7 +72,7 @@ const Reservation = (props) => {
       touched: touched.date,
     },
   ];
-  console.log(errors);
+//   console.log(errors);
   return (
     <Grid className="container mx-auto py-12">
       <Title addClass="text-[40px] mb-10">Book A Table</Title>
