@@ -1,10 +1,10 @@
 import { Button, Grid } from "@mui/material";
 import { useFormik } from "formik";
+import Link from "next/link";
 import React from "react";
 import Input from "../../components/form/Input";
 import Title from "../../components/ui/Title";
-import loginSchema from "../../schema/loginSchema";
-import Link from "next/link";
+import { adminSchema } from "../../schema/admin";
 
 const login = () => {
   const onSubmit = async (values, actions) => {
@@ -14,21 +14,21 @@ const login = () => {
 
   const { handleChange, handleSubmit, values, errors, touched, handleBlur } = useFormik({
     initialValues: {
-      email: "",
+      username: "",
       password: "",
     },
     onSubmit,
-    validationSchema: loginSchema,
+    validationSchema: adminSchema,
   });
   const inputs = [
     {
       id: 1,
-      type: "email",
-      placeholder: "Your Email",
-      name: "email",
-      value: values.email,
-      errorMessage: errors.email,
-      touched: touched.email,
+      type: "text",
+      placeholder: "Your Name",
+      name: "username",
+      value: values.username,
+      errorMessage: errors.username,
+      touched: touched.username,
     },
     {
       id: 2,
@@ -41,9 +41,9 @@ const login = () => {
     },
   ];
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto py-2">
       <form onSubmit={handleSubmit} className="flex flex-col items-center my-20 w-1/2 mx-auto">
-        <Title addClass="text-[40px] text-center md:w-1/2 w-full">Login</Title>
+        <Title addClass="text-[40px] text-center md:w-1/2 w-full">Admin Login</Title>
         <Grid className="flex flex-col gap-y-3 w-full">
           {inputs.map((input) => (
             <Input key={input.id} {...input} onChange={handleChange} onBlur={handleBlur} />
@@ -52,9 +52,8 @@ const login = () => {
             <Button className="btn-primary" onClick={handleSubmit}>
               Login
             </Button>
-            <Button className="btn-primary !bg-secondary">Github</Button>
             <Link href="/auth/register">
-              Don't have an account? <span className="text-primary">Register</span>
+              <span className="text-primary underline">Home Page</span>
             </Link>
           </Grid>
         </Grid>
