@@ -10,6 +10,8 @@ import { Form, useFormik } from "formik";
 import Input from "../../components/form/Input";
 import profilSchema from "../../schema/profile";
 import Account from "../../components/profile/Account";
+import Password from "../../components/profile/Password";
+import Order from "../../components/profile/Order";
 
 const Profile = () => {
   const [tabs, setTabs] = useState(0);
@@ -89,7 +91,7 @@ const Profile = () => {
     },
   ];
   return (
-    <div className="flex px-10 min-h-[calc(100vh-_-433px)] lg:flex-row flex-col">
+    <div className="flex px-10 min-h-[calc(100vh-_-433px)] lg:flex-row flex-col lg:mb-10">
       <div className="flex-shrink-0 lg:w-80 w-100">
         <div className="relative flex flex-col items-center px-10 py-5 border-2 border-b-0">
           <Image
@@ -102,31 +104,48 @@ const Profile = () => {
           <b className="mt-1 text-2xl">Ahmet Palavan</b>
         </div>
         <ul className="text-center font-semibold">
-          <li onClick={() => setTabs(0)} className="border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all">
+          <li
+            onClick={() => setTabs(0)}
+            className={`border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
+              tabs === 0 && "bg-primary text-white"
+            }`}
+          >
             <Home />
             <button className="ml-1 ">Account</button>
           </li>
-          <li onClick={() => setTabs(1)} className="border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all">
+          <li
+            onClick={() => setTabs(1)}
+            cclassName={`border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
+              tabs === 1 && "bg-primary text-white"
+            }`}
+          >
             <Key />
             <button className="ml-1">Password</button>
           </li>
-          <li onClick={() => setTabs(2)} className="border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all">
+          <li
+            onClick={() => setTabs(2)}
+            className={`border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
+              tabs === 2 && "bg-primary text-white"
+            }`}
+          >
             <Moped />
             <button className="ml-1">Orders</button>
           </li>
-          <li onClick={() => setTabs(3)} className="border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all">
+          <li
+            onClick={() => setTabs(3)}
+            className={`border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
+              tabs === 3 && "bg-primary text-white"
+            }`}
+          >
             <ExitToApp />
             <button className="ml-1">Exit</button>
           </li>
         </ul>
       </div>
 
-      {tabs === 0 && (
-        <Account/>
-      )}
-      {tabs === 1 && (
-        <Account/>
-      )}
+      {tabs === 0 && <Account />}
+      {tabs === 1 && <Password />}
+      {tabs === 2 && <Order />}
     </div>
   );
 };
