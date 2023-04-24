@@ -1,15 +1,17 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { FaSearch, FaShoppingCart, FaUserAlt } from "react-icons/fa";
-import { GiHamburgerMenu, GiCancel } from "react-icons/gi";
+import { GiCancel, GiHamburgerMenu } from "react-icons/gi";
+import { useSelector } from "react-redux";
 import Logo from "../ui/Logo";
 import Search from "../ui/Search";
-import { useRouter } from "next/router";
-import Link from "next/link";
 
 const Header = () => {
   const router = useRouter();
   const [isSearchModal, setIsSearchModal] = useState(false);
   const [isMenuModal, setIsMenuModal] = useState(false);
+  const cart = useSelector((state) => state.cart);
   return (
     <div className={`h-[5.5rem] relative z-50 ${router.asPath === "/" ? "bg-transparent" : "bg-secondary"} `}>
       <div className="container mx-auto text-white flex justify-between items-center h-full">
@@ -44,9 +46,14 @@ const Header = () => {
           <Link href="/auth/login">
             <FaUserAlt className="hover:text-primary transition-all" />
           </Link>
-          <Link href="/cart">
-            <FaShoppingCart className="hover:text-primary transition-all" />
-          </Link>
+          <span className="relative">
+            <Link href="/cart">
+              <FaShoppingCart className="hover:text-primary transition-all" />
+              <span className="w-4 h-4 text-xs text-black absolute font-bold -top-2 -right-2 grid place-content-center rounded-full bg-primary">
+                {cart.products.length === 0 ? "0" : cart.products.length}
+              </span>
+            </Link>
+          </span>
           <button onClick={() => setIsSearchModal(true)}>
             <FaSearch className="hover:text-primary transition-all" />
           </button>
