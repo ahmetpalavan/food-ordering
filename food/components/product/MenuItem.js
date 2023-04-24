@@ -1,14 +1,16 @@
-import { Card } from "@mui/material";
 import Image from "next/image";
 import { FaShoppingCart } from "react-icons/fa";
+import Link from "next/link";
 
 const MenuItem = () => {
   return (
     <div className="bg-secondary rounded-3xl">
       <div className="w-full bg-[#f1f2f3] h-[210px] grid place-content-center rounded-b-3xl rounded-tl-2xl rounded-tr-2xl">
-        <div className="relative w-36 h-36">
-          <Image src="https://html.design/demo/feane/images/f1.png" className="hover:scale-110" layout="fill" objectFit="cover" />
-        </div>
+        <Link href="/product">
+          <div className="relative w-36 h-36">
+            <Image src="https://html.design/demo/feane/images/f1.png" className="hover:scale-110" layout="fill" objectFit="cover" />
+          </div>
+        </Link>
       </div>
       <div className="text-white p-[25px]">
         <h4 className="text-xl font-semibold">Delicious Pizza</h4>
