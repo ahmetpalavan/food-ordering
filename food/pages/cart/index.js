@@ -11,7 +11,7 @@ const Cart = () => {
     dispatch(reset());
   };
 
-  console.log(cart, "das");
+  console.log(cart, "dasas");
   return (
     <div className="min-h-[calc(100vh_-_433px)]">
       <div className="flex justify-between items-center md:flex-row flex-col">
@@ -75,12 +75,7 @@ const Cart = () => {
             <b>Total: </b>${cart.total}
           </div>
           <div>
-            <button
-              onClick={() => {
-                dispatch(reset());
-              }}
-              className="btn-primary mt-4 md:w-auto w-52"
-            >
+            <button onClick={handleReset} className="btn-primary mt-4 md:w-auto w-52">
               CHECKOUT NOW!
             </button>
           </div>
