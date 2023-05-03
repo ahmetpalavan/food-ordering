@@ -16,19 +16,15 @@ const UserSchema = new mongoose.Schema(
     },
     phoneNumber: {
       type: String,
-      required: [true, "Please provide a phone number"],
     },
     address: {
       type: String,
-      required: [true, "Please provide a address"],
     },
     job: {
       type: String,
-      required: [true, "Please provide a job"],
     },
     bio: {
       type: String,
-      required: [true, "Please provide a bio"],
     },
     confirmPassword: {
       type: String,
