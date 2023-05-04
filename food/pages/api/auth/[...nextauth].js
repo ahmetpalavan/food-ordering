@@ -5,6 +5,8 @@ import clientPromise from "../../../util/mongo";
 
 export default NextAuth({
   // Configure one or more authentication providers
+  adapter: MongoDBAdapter(clientPromise),
+
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID,
@@ -16,5 +18,4 @@ export default NextAuth({
   pages: {
     signIn: "/auth/login",
   },
-  adapter: MongoDBAdapter(clientPromise),
 });
