@@ -1,15 +1,30 @@
 import { Button, Grid } from "@mui/material";
+import axios from "axios";
 import { useFormik } from "formik";
 import Link from "next/link";
 import React from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Input from "../../components/form/Input";
 import Title from "../../components/ui/Title";
 import { adminSchema } from "../../schema/admin";
+import { useRouter } from "next/router";
+import { getSession } from "next-auth/react";
 
 const login = () => {
+  const { push } = useRouter();
   const onSubmit = async (values, actions) => {
-    await new Promise((r) => setTimeout(r, 3000));
-    actions.resetForm();
+    try {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/admin`, values);
+      if (res.status === 200) {
+        console.log(res.data, "res");
+        actions.resetForm();
+        toast.success("Login Success");
+        push("/admin/profile");
+      }
+    } catch (error) {
+      console.log(error, "error");
+    }
   };
 
   const { handleChange, handleSubmit, values, errors, touched, handleBlur } = useFormik({
@@ -61,5 +76,20 @@ const login = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(context) {
+  const myCookie = context.req?.cookies;
+  if (myCookie.token === process.env.ADMIN_TOKEN) {
+    return {
+      redirect: {
+        destination: "/admin/profile",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}
 
 export default login;
