@@ -1,20 +1,21 @@
-import Image from "next/image";
-import React, { useState } from "react";
-import Button, { ButtonBase } from "@mui/material";
+import ExitToApp from "@mui/icons-material/ExitToApp";
 import Home from "@mui/icons-material/Home";
 import Key from "@mui/icons-material/Key";
 import Moped from "@mui/icons-material/Moped";
-import ExitToApp from "@mui/icons-material/ExitToApp";
-import Title from "../../components/ui/Title";
-import { Form, useFormik } from "formik";
-import Input from "../../components/form/Input";
-import profilSchema from "../../schema/profile";
+import { useFormik } from "formik";
+import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import Account from "../../components/profile/Account";
-import Password from "../../components/profile/Password";
 import Order from "../../components/profile/Order";
+import Password from "../../components/profile/Password";
+import profilSchema from "../../schema/profile";
 
 const Profile = () => {
+  const { push } = useRouter();
   const [tabs, setTabs] = useState(0);
+  const { data: session } = useSession();
 
   const onSubmit = async (values, actions) => {
     await new Promise((r) => setTimeout(r, 3000));
@@ -90,6 +91,20 @@ const Profile = () => {
       touched: touched.bio,
     },
   ];
+
+  const handleSignOut = () => {
+    if (confirm("Are you sure?")) {
+      signOut({ redirect: false });
+      push("/auth/login");
+    }
+  };
+
+  useEffect(() => {
+    if (!session) {
+      push("/auth/login");
+    }
+  }, [session, push]);
+
   return (
     <div className="flex px-10 min-h-[calc(100vh-_-433px)] lg:flex-row flex-col lg:mb-10">
       <div className="flex-shrink-0 lg:w-80 w-100">
@@ -132,7 +147,7 @@ const Profile = () => {
             <button className="ml-1">Orders</button>
           </li>
           <li
-            onClick={() => setTabs(3)}
+            onClick={handleSignOut}
             className={`border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
               tabs === 3 && "bg-primary text-white"
             }`}

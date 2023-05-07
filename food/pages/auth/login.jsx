@@ -2,18 +2,35 @@ import { Button, Grid } from "@mui/material";
 import { useFormik } from "formik";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import Input from "../../components/form/Input";
 import Title from "../../components/ui/Title";
 import loginSchema from "../../schema/loginSchema";
+import { useRouter } from "next/router";
 
 const login = () => {
+  const { push } = useRouter();
   const { data: session } = useSession();
-  console.log(session, "session123");
   const onSubmit = async (values, actions) => {
-    await new Promise((r) => setTimeout(r, 3000));
+    const { email, password } = values;
+    const options = {
+      redirect: false,
+      email,
+      password,
+    };
+    const res = await signIn("credentials", options);
+    push("/profile");
     actions.resetForm();
+    console.log(res, "res");
   };
+
+  useEffect(() => {
+    if (session) {
+      push("/profile");
+    }
+  }, [session, push]);
+
+  console.log(session, "session");
 
   const { handleChange, handleSubmit, values, errors, touched, handleBlur } = useFormik({
     initialValues: {
