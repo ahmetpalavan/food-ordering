@@ -8,7 +8,7 @@ const MenuItem = () => {
       <div className="w-full bg-[#f1f2f3] h-[210px] grid place-content-center rounded-b-3xl rounded-tl-2xl rounded-tr-2xl">
         <Link href="/product">
           <div className="relative w-36 h-36">
-            <Image src="https://html.design/demo/feane/images/f1.png" className="hover:scale-110" layout="fill" objectFit="cover" />
+            <Image priority src="https://html.design/demo/feane/images/f1.png" className="hover:scale-110" layout="fill" objectFit="cover" />
           </div>
         </Link>
       </div>
