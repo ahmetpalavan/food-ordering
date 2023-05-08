@@ -20,6 +20,7 @@ export default NextAuth({
     }),
     CredentialsProvider({
       name: "Credentials",
+
       credentials: {
         username: { label: "Username", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" },
@@ -28,9 +29,8 @@ export default NextAuth({
         const email = credentials.email;
         const password = credentials.password;
         const user = await User.findOne({ email: email });
-
         if (!user) {
-          throw new Error("No user found");
+          throw new Error("You haven't registered yet!");
         }
         if (user) {
           return signInUser({ user, password });

@@ -1,7 +1,7 @@
 import cookie from "cookie";
 
 const handler = (req, res) => {
-  console.log(req, "req");
+  console.log(req, "ahmet");
   const { method } = req;
 
   if (method === "POST") {
@@ -23,7 +23,7 @@ const handler = (req, res) => {
   if (method === "PUT") {
     res.setHeader(
       "Set-Cookie",
-      cookie.serialize("token", "", {
+      cookie.serialize("token", process.env.ADMIN_TOKEN, {
         maxAge: -1,
         path: "/",
       })
