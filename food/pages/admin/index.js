@@ -11,7 +11,7 @@ import { adminSchema } from "../../schema/admin";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 
-const login = () => {
+const Login = () => {
   const { push } = useRouter();
   const onSubmit = async (values, actions) => {
     try {
@@ -79,7 +79,7 @@ const login = () => {
 
 export async function getServerSideProps(context) {
   const myCookie = context.req?.cookies;
-  if (myCookie.token === process.env.ADMIN_TOKEN) {
+  if (myCookie === process.env.ADMIN_TOKEN) {
     return {
       redirect: {
         destination: "/admin/profile",
@@ -92,4 +92,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default login;
+export default Login;

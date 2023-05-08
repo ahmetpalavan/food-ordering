@@ -3,22 +3,27 @@ import React from "react";
 import profilSchema from "../../schema/profile";
 import Title from "../ui/Title";
 import Input from "../form/Input";
+import axios from "axios";
 
-const Account = () => {
-
+const Account = ({ user }) => {
   const onSubmit = async (values, actions) => {
-    await new Promise((r) => setTimeout(r, 3000));
-    actions.resetForm();
-    // console.log(values, actions, "ahmetsdasd");
+    try {
+      const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/${user._id}`, values);
+      console.log(res, "res123");
+    } catch (error) {
+      console.log(error, "error123123");
+    }
   };
 
   const { handleChange, handleSubmit, values, errors, touched, handleBlur } = useFormik({
+    enableReinitialize: true,
     initialValues: {
-      fullName: "",
-      phoneNumber: "",
-      email: "",
-      person: "",
-      date: "",
+      fullName: user?.fullName,
+      phoneNumber: user?.phoneNumber,
+      email: user?.email,
+      address: user?.address,
+      job: user?.job,
+      bio: user?.bio,
     },
     onSubmit,
     validationSchema: profilSchema,
@@ -64,11 +69,11 @@ const Account = () => {
     {
       id: 5,
       type: "text",
-      name: "bio",
+      placeholder: "Your Job",
+      name: "job",
       value: values.job,
       errorMessage: errors.job,
       touched: touched.job,
-      placeholder: "Your Job",
     },
     {
       id: 6,
@@ -90,7 +95,7 @@ const Account = () => {
           </div>
         ))}
       </div>
-      <button className="btn-primary w-36 mt-3" onClick={handleSubmit}>
+      <button type="submit" className="btn-primary w-36 mt-3" onClick={handleSubmit}>
         Update
       </button>
     </form>

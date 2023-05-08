@@ -8,8 +8,11 @@ import Footer from "../../components/admin/Footer";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import AddProduct from "../../components/admin/AddProduct";
 
 const Profile = () => {
+  const [isProductModal, setIsProductModal] = useState(false);
+  const [tabs, setTabs] = useState(0);
   const { push } = useRouter();
   const closeAdminAccount = async () => {
     try {
@@ -26,8 +29,6 @@ const Profile = () => {
       console.log(error, "error");
     }
   };
-
-  const [tabs, setTabs] = useState(0);
 
   return (
     <div className="flex px-10 min-h-[calc(100vh_-_433px)] lg:flex-row flex-col lg:mb-0 mb-10">
@@ -94,6 +95,10 @@ const Profile = () => {
       {tabs === 1 && <Order />}
       {tabs === 2 && <Category />}
       {tabs === 3 && <Footer />}
+      {isProductModal && <AddProduct setIsProductModal={setIsProductModal} />}
+      <button className="fixed bottom-10 right-10 bg-primary text-white p-3 rounded-full" onClick={() => setIsProductModal(true)}>
+        <i className="fa fa-plus"></i>
+      </button>
     </div>
   );
 };

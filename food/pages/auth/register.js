@@ -9,14 +9,21 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 
 const Register = () => {
-  const {push} = useRouter();
+  const { push } = useRouter();
   const onSubmit = async (values, actions) => {
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/register`, values);
-      res.status === 200 ? toast.success("Register success") : toast.error("Register failed");
-      push("/auth/login");
+      const res = await axios.post(
+        `
+        ${process.env.NEXT_PUBLIC_API_URL}/users/register
+      `,
+        values
+      );
+      if (res.status === 200) {
+        toast.success("Register success");
+        push("/auth/login");
+      }
     } catch (error) {
-      console.log(error, "hataVar12");
+      toast.error(error.response.data.message);
     }
   };
 
