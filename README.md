@@ -1,5 +1,3 @@
-Tabii, işte `ahmetpalavan/food-ordering` deposu için bir README açıklaması örneği:
-
 # Food Ordering
 
 Bu proje, bir yemek siparişi uygulamasının temel işlevlerini taklit etmeyi amaçlamaktadır. Kullanıcılar, restoran menülerini görüntüleyebilir, yemekleri seçebilir, sepete ekleyebilir ve siparişlerini tamamlayabilir.
