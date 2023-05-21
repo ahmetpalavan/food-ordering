@@ -19,8 +19,8 @@ Bu proje, bir yemek siparişi uygulamasının temel işlevlerini taklit etmeyi a
 ## Kurulum
 
 1. 
-   ```
-   bash git clone https://github.com/ahmetpalavan/food-ordering.git
+   ```bash
+   git clone https://github.com/ahmetpalavan/food-ordering.git
    ```
 
 2. Proje dizinine gidin:
