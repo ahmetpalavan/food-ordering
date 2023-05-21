@@ -18,7 +18,9 @@ Bu proje, bir yemek siparişi uygulamasının temel işlevlerini taklit etmeyi a
 
 ## Kurulum
 
-1. ```bash git clone https://github.com/ahmetpalavan/food-ordering.git
+1. 
+   ```
+   bash git clone https://github.com/ahmetpalavan/food-ordering.git
    ```
 
 2. Proje dizinine gidin:
@@ -33,13 +35,7 @@ Bu proje, bir yemek siparişi uygulamasının temel işlevlerini taklit etmeyi a
    npm install
    ```
 
-4. Veritabanını oluşturmak için aşağıdaki komutu çalıştırın:
-
-   ```bash
-   npm run migrate
-   ```
-
-5. Sunucuyu başlatmak için aşağıdaki komutu çalıştırın:
+4. Sunucuyu başlatmak için aşağıdaki komutu çalıştırın:
 
    ```bash
    npm run start
